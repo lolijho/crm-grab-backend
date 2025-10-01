@@ -27,3 +27,4 @@ EXPOSE 8001
 
 # Comando per avviare il server - usa la variabile PORT di Railway
 CMD uvicorn server:app --host 0.0.0.0 --port ${PORT:-8001}
+# Force rebuild Wed Oct  1 11:48:22 EDT 2025
