@@ -1,0 +1,5 @@
+# Requirements file per Railway
+# Installa le dipendenze dal backend
+
+-r backend/requirements.txt
+
