@@ -10,21 +10,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Copia i file di requirements
-COPY backend/requirements.txt /app/backend/requirements.txt
+COPY requirements.txt /app/requirements.txt
 
 # Installa le dipendenze Python
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r /app/backend/requirements.txt
+    pip install --no-cache-dir -r /app/requirements.txt
 
 # Copia tutto il codice del backend
-COPY backend/ /app/backend/
+COPY . /app/
 
 # Crea un file __init__.py se non esiste
-RUN touch /app/backend/__init__.py
+RUN touch /app/__init__.py
 
 # Esponi la porta (Railway la sovrascriverà con la sua variabile $PORT)
 EXPOSE 8001
 
 # Comando per avviare il server - usa la variabile PORT di Railway
-CMD uvicorn backend.server:app --host 0.0.0.0 --port ${PORT:-8001}
-
+CMD uvicorn server:app --host 0.0.0.0 --port ${PORT:-8001}
